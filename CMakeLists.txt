@@ -1,0 +1,43 @@
+cmake_minimum_required(VERSION 3.16)
+project(linscan CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+option(SANITIZE "Build with AddressSanitizer and UBSan" OFF)
+
+add_compile_options(-Wall -Wextra -Wpedantic)
+if(SANITIZE)
+  add_compile_options(-fsanitize=address,undefined -fno-omit-frame-pointer)
+  add_link_options(-fsanitize=address,undefined)
+endif()
+
+add_library(linscan_core STATIC
+  src/ir.cpp
+  src/parser.cpp
+  src/cfg.cpp
+  src/liveness.cpp
+  src/intervals.cpp
+  src/vm.cpp
+  src/validate.cpp
+  src/alloc_usage.cpp
+  src/alloc_linear.cpp
+  src/alloc_color.cpp
+)
+target_include_directories(linscan_core PUBLIC src)
+
+add_executable(linscan src/main.cpp)
+target_link_libraries(linscan PRIVATE linscan_core)
+
+enable_testing()
+add_executable(test_core tests/test_core.cpp)
+target_link_libraries(test_core PRIVATE linscan_core)
+add_test(NAME validator COMMAND test_core validator)
+add_test(NAME fig2_linear_scan COMMAND test_core fig2)
