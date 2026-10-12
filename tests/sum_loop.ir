@@ -1,0 +1,18 @@
+# Sums 1..10. Non-SSA on purpose: v0 and v1 are reassigned in the loop.
+func main
+block entry:
+  v0 = const 0        # sum
+  v1 = const 1        # i
+  v2 = const 10       # limit
+  v3 = const 1        # step
+  jmp loop
+block loop:
+  v4 = lt v2 v1       # 10 < i ?
+  br v4 done body
+block body:
+  v0 = add v0 v1
+  v1 = add v1 v3
+  jmp loop
+block done:
+  print v0
+  ret
