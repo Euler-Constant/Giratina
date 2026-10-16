@@ -27,6 +27,7 @@ add_library(linscan_core STATIC
   src/intervals.cpp
   src/vm.cpp
   src/validate.cpp
+  src/harness.cpp
   src/alloc_usage.cpp
   src/alloc_linear.cpp
   src/alloc_color.cpp
@@ -41,3 +42,8 @@ add_executable(test_core tests/test_core.cpp)
 target_link_libraries(test_core PRIVATE linscan_core)
 add_test(NAME validator COMMAND test_core validator)
 add_test(NAME fig2_linear_scan COMMAND test_core fig2)
+
+add_executable(test_harness tests/test_harness.cpp)
+target_link_libraries(test_harness PRIVATE linscan_core)
+target_compile_definitions(test_harness PRIVATE LINSCAN_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+add_test(NAME harness COMMAND test_harness)
