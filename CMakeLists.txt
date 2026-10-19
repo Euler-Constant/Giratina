@@ -47,3 +47,16 @@ add_executable(test_harness tests/test_harness.cpp)
 target_link_libraries(test_harness PRIVATE linscan_core)
 target_compile_definitions(test_harness PRIVATE LINSCAN_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 add_test(NAME harness COMMAND test_harness)
+
+
+# Define a custom build/profiling target for Callgrind
+find_program(VALGRIND_BIN valgrind)
+
+if(VALGRIND_BIN)
+    add_custom_target(profile
+        COMMAND ${VALGRIND_BIN} --tool=callgrind --callgrind-out-file=callgrind.out $<TARGET_FILE:linscan>
+        DEPENDS linscan
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMENT "Running Callgrind profiling on linscan..."
+    )
+endif()
