@@ -18,7 +18,9 @@ constexpr double kLoopWeight = 10.0;
 constexpr int kMaxLoopDepth = 8;
 
 // Loop nesting depth of every block (0 = not in any loop). Blocks the entry cannot
-// reach get 0.
+// reach get -1: they never execute, so build_intervals gives their operand mentions no
+// weight. That keeps a variable's weight the same whichever numbering is used (the
+// layout numbering numbers unreachable blocks, the depth-first numbering does not).
 //
 // An edge u -> h is a *back edge* when h is at or before u in depth-first order. For a
 // depth-first search this is exactly an edge to an ancestor in the DFS tree: tree,
@@ -34,11 +36,14 @@ constexpr int kMaxLoopDepth = 8;
 // acceptable.
 std::vector<int> loop_depths(const Function& f) {
   const int nb = static_cast<int>(f.blocks.size());
-  std::vector<int> depth(nb, 0);
+  std::vector<int> depth(nb, -1);
 
   const std::vector<int> order = depth_first_order(f);
   std::vector<int> pos(nb, -1);
-  for (size_t i = 0; i < order.size(); ++i) pos[order[i]] = static_cast<int>(i);
+  for (size_t i = 0; i < order.size(); ++i) {
+    pos[order[i]] = static_cast<int>(i);
+    depth[order[i]] = 0;  // reachable; loops below raise it
+  }
 
   // Predecessor lists, counting only reachable predecessors.
   std::vector<std::vector<int>> preds(nb);
@@ -136,6 +141,9 @@ std::vector<Interval> build_intervals(const Function& f, const Liveness& live,
   for (int b : block_order) {
     if (first[b] < 0) continue;
 
+    // An unreachable block (depth -1) still takes up numbers under the layout numbering,
+    // so its mentions widen intervals, but it never runs, so they add no weight.
+    const bool counts = depth[b] >= 0;
     double w = 1.0;
     for (int i = 0; i < std::min(depth[b], kMaxLoopDepth); ++i) w *= kLoopWeight;
 
@@ -144,12 +152,12 @@ std::vector<Interval> build_intervals(const Function& f, const Liveness& live,
     for (const Instr& in : f.blocks[b].instrs) {
       for (int u : uses(in)) {
         touch(u, p);
-        weight[u] += w;
+        if (counts) weight[u] += w;
       }
       int d = def(in);
       if (d >= 0) {
         touch(d, p);
-        weight[d] += w;
+        if (counts) weight[d] += w;
       }
       ++p;
     }
