@@ -1,0 +1,123 @@
+# 20-tap FIR filter: 20 coefficients and a 20-deep window all live across the loop
+# expect: 4521209454135307457
+func fir20
+block entry:
+  v0 = const 1
+  v1 = const 1
+  v2 = const 4
+  v3 = const 7
+  v4 = const 10
+  v5 = const 13
+  v6 = const 16
+  v7 = const 19
+  v8 = const 22
+  v9 = const 25
+  v10 = const 28
+  v11 = const 31
+  v12 = const 34
+  v13 = const 37
+  v14 = const 40
+  v15 = const 43
+  v16 = const 46
+  v17 = const 49
+  v18 = const 52
+  v19 = const 55
+  v20 = const 58
+  v21 = const 0
+  v22 = const 0
+  v23 = const 0
+  v24 = const 0
+  v25 = const 0
+  v26 = const 0
+  v27 = const 0
+  v28 = const 0
+  v29 = const 0
+  v30 = const 0
+  v31 = const 0
+  v32 = const 0
+  v33 = const 0
+  v34 = const 0
+  v35 = const 0
+  v36 = const 0
+  v37 = const 0
+  v38 = const 0
+  v39 = const 0
+  v40 = const 0
+  v41 = const 1103515245
+  v42 = const 12345
+  v43 = const 42
+  v44 = const 0
+  v45 = const 60
+  v46 = const 0
+  jmp head1
+block head1:
+  v47 = lt v46 v45
+  br v47 body2 out3
+block body2:
+  v48 = mul v43 v41
+  v43 = add v48 v42
+  v40 = mov v39
+  v39 = mov v38
+  v38 = mov v37
+  v37 = mov v36
+  v36 = mov v35
+  v35 = mov v34
+  v34 = mov v33
+  v33 = mov v32
+  v32 = mov v31
+  v31 = mov v30
+  v30 = mov v29
+  v29 = mov v28
+  v28 = mov v27
+  v27 = mov v26
+  v26 = mov v25
+  v25 = mov v24
+  v24 = mov v23
+  v23 = mov v22
+  v22 = mov v21
+  v21 = mov v43
+  v49 = mul v21 v1
+  v50 = mul v22 v2
+  v51 = add v49 v50
+  v52 = mul v23 v3
+  v53 = add v51 v52
+  v54 = mul v24 v4
+  v55 = add v53 v54
+  v56 = mul v25 v5
+  v57 = add v55 v56
+  v58 = mul v26 v6
+  v59 = add v57 v58
+  v60 = mul v27 v7
+  v61 = add v59 v60
+  v62 = mul v28 v8
+  v63 = add v61 v62
+  v64 = mul v29 v9
+  v65 = add v63 v64
+  v66 = mul v30 v10
+  v67 = add v65 v66
+  v68 = mul v31 v11
+  v69 = add v67 v68
+  v70 = mul v32 v12
+  v71 = add v69 v70
+  v72 = mul v33 v13
+  v73 = add v71 v72
+  v74 = mul v34 v14
+  v75 = add v73 v74
+  v76 = mul v35 v15
+  v77 = add v75 v76
+  v78 = mul v36 v16
+  v79 = add v77 v78
+  v80 = mul v37 v17
+  v81 = add v79 v80
+  v82 = mul v38 v18
+  v83 = add v81 v82
+  v84 = mul v39 v19
+  v85 = add v83 v84
+  v86 = mul v40 v20
+  v87 = add v85 v86
+  v44 = add v44 v87
+  v46 = add v46 v0
+  jmp head1
+block out3:
+  print v44
+  ret

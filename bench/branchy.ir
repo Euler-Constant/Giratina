@@ -1,0 +1,1513 @@
+# 150 if/else diamonds in a row (451 basic blocks) over 5 variables: many blocks, few variables
+# expect: 18034 236
+func branchy
+block entry:
+  v0 = const 1
+  v1 = const 3
+  v2 = const 5
+  v3 = const 0
+  v4 = const 2
+  v5 = const 7
+  v6 = lt v1 v2
+  br v6 then1 else2
+block then1:
+  v1 = add v1 v4
+  jmp join3
+block else2:
+  v2 = add v2 v5
+  jmp join3
+block join3:
+  v3 = add v3 v1
+  v7 = lt v1 v2
+  br v7 then4 else5
+block then4:
+  v1 = add v1 v4
+  jmp join6
+block else5:
+  v2 = add v2 v5
+  jmp join6
+block join6:
+  v3 = add v3 v1
+  v8 = lt v1 v2
+  br v8 then7 else8
+block then7:
+  v1 = add v1 v4
+  jmp join9
+block else8:
+  v2 = add v2 v5
+  jmp join9
+block join9:
+  v3 = add v3 v1
+  v9 = lt v1 v2
+  br v9 then10 else11
+block then10:
+  v1 = add v1 v4
+  jmp join12
+block else11:
+  v2 = add v2 v5
+  jmp join12
+block join12:
+  v3 = add v3 v1
+  v10 = lt v1 v2
+  br v10 then13 else14
+block then13:
+  v1 = add v1 v4
+  jmp join15
+block else14:
+  v2 = add v2 v5
+  jmp join15
+block join15:
+  v3 = add v3 v1
+  v11 = lt v1 v2
+  br v11 then16 else17
+block then16:
+  v1 = add v1 v4
+  jmp join18
+block else17:
+  v2 = add v2 v5
+  jmp join18
+block join18:
+  v3 = add v3 v1
+  v12 = lt v1 v2
+  br v12 then19 else20
+block then19:
+  v1 = add v1 v4
+  jmp join21
+block else20:
+  v2 = add v2 v5
+  jmp join21
+block join21:
+  v3 = add v3 v1
+  v13 = lt v1 v2
+  br v13 then22 else23
+block then22:
+  v1 = add v1 v4
+  jmp join24
+block else23:
+  v2 = add v2 v5
+  jmp join24
+block join24:
+  v3 = add v3 v1
+  v14 = lt v1 v2
+  br v14 then25 else26
+block then25:
+  v1 = add v1 v4
+  jmp join27
+block else26:
+  v2 = add v2 v5
+  jmp join27
+block join27:
+  v3 = add v3 v1
+  v15 = lt v1 v2
+  br v15 then28 else29
+block then28:
+  v1 = add v1 v4
+  jmp join30
+block else29:
+  v2 = add v2 v5
+  jmp join30
+block join30:
+  v3 = add v3 v1
+  v16 = lt v1 v2
+  br v16 then31 else32
+block then31:
+  v1 = add v1 v4
+  jmp join33
+block else32:
+  v2 = add v2 v5
+  jmp join33
+block join33:
+  v3 = add v3 v1
+  v17 = lt v1 v2
+  br v17 then34 else35
+block then34:
+  v1 = add v1 v4
+  jmp join36
+block else35:
+  v2 = add v2 v5
+  jmp join36
+block join36:
+  v3 = add v3 v1
+  v18 = lt v1 v2
+  br v18 then37 else38
+block then37:
+  v1 = add v1 v4
+  jmp join39
+block else38:
+  v2 = add v2 v5
+  jmp join39
+block join39:
+  v3 = add v3 v1
+  v19 = lt v1 v2
+  br v19 then40 else41
+block then40:
+  v1 = add v1 v4
+  jmp join42
+block else41:
+  v2 = add v2 v5
+  jmp join42
+block join42:
+  v3 = add v3 v1
+  v20 = lt v1 v2
+  br v20 then43 else44
+block then43:
+  v1 = add v1 v4
+  jmp join45
+block else44:
+  v2 = add v2 v5
+  jmp join45
+block join45:
+  v3 = add v3 v1
+  v21 = lt v1 v2
+  br v21 then46 else47
+block then46:
+  v1 = add v1 v4
+  jmp join48
+block else47:
+  v2 = add v2 v5
+  jmp join48
+block join48:
+  v3 = add v3 v1
+  v22 = lt v1 v2
+  br v22 then49 else50
+block then49:
+  v1 = add v1 v4
+  jmp join51
+block else50:
+  v2 = add v2 v5
+  jmp join51
+block join51:
+  v3 = add v3 v1
+  v23 = lt v1 v2
+  br v23 then52 else53
+block then52:
+  v1 = add v1 v4
+  jmp join54
+block else53:
+  v2 = add v2 v5
+  jmp join54
+block join54:
+  v3 = add v3 v1
+  v24 = lt v1 v2
+  br v24 then55 else56
+block then55:
+  v1 = add v1 v4
+  jmp join57
+block else56:
+  v2 = add v2 v5
+  jmp join57
+block join57:
+  v3 = add v3 v1
+  v25 = lt v1 v2
+  br v25 then58 else59
+block then58:
+  v1 = add v1 v4
+  jmp join60
+block else59:
+  v2 = add v2 v5
+  jmp join60
+block join60:
+  v3 = add v3 v1
+  v26 = lt v1 v2
+  br v26 then61 else62
+block then61:
+  v1 = add v1 v4
+  jmp join63
+block else62:
+  v2 = add v2 v5
+  jmp join63
+block join63:
+  v3 = add v3 v1
+  v27 = lt v1 v2
+  br v27 then64 else65
+block then64:
+  v1 = add v1 v4
+  jmp join66
+block else65:
+  v2 = add v2 v5
+  jmp join66
+block join66:
+  v3 = add v3 v1
+  v28 = lt v1 v2
+  br v28 then67 else68
+block then67:
+  v1 = add v1 v4
+  jmp join69
+block else68:
+  v2 = add v2 v5
+  jmp join69
+block join69:
+  v3 = add v3 v1
+  v29 = lt v1 v2
+  br v29 then70 else71
+block then70:
+  v1 = add v1 v4
+  jmp join72
+block else71:
+  v2 = add v2 v5
+  jmp join72
+block join72:
+  v3 = add v3 v1
+  v30 = lt v1 v2
+  br v30 then73 else74
+block then73:
+  v1 = add v1 v4
+  jmp join75
+block else74:
+  v2 = add v2 v5
+  jmp join75
+block join75:
+  v3 = add v3 v1
+  v31 = lt v1 v2
+  br v31 then76 else77
+block then76:
+  v1 = add v1 v4
+  jmp join78
+block else77:
+  v2 = add v2 v5
+  jmp join78
+block join78:
+  v3 = add v3 v1
+  v32 = lt v1 v2
+  br v32 then79 else80
+block then79:
+  v1 = add v1 v4
+  jmp join81
+block else80:
+  v2 = add v2 v5
+  jmp join81
+block join81:
+  v3 = add v3 v1
+  v33 = lt v1 v2
+  br v33 then82 else83
+block then82:
+  v1 = add v1 v4
+  jmp join84
+block else83:
+  v2 = add v2 v5
+  jmp join84
+block join84:
+  v3 = add v3 v1
+  v34 = lt v1 v2
+  br v34 then85 else86
+block then85:
+  v1 = add v1 v4
+  jmp join87
+block else86:
+  v2 = add v2 v5
+  jmp join87
+block join87:
+  v3 = add v3 v1
+  v35 = lt v1 v2
+  br v35 then88 else89
+block then88:
+  v1 = add v1 v4
+  jmp join90
+block else89:
+  v2 = add v2 v5
+  jmp join90
+block join90:
+  v3 = add v3 v1
+  v36 = lt v1 v2
+  br v36 then91 else92
+block then91:
+  v1 = add v1 v4
+  jmp join93
+block else92:
+  v2 = add v2 v5
+  jmp join93
+block join93:
+  v3 = add v3 v1
+  v37 = lt v1 v2
+  br v37 then94 else95
+block then94:
+  v1 = add v1 v4
+  jmp join96
+block else95:
+  v2 = add v2 v5
+  jmp join96
+block join96:
+  v3 = add v3 v1
+  v38 = lt v1 v2
+  br v38 then97 else98
+block then97:
+  v1 = add v1 v4
+  jmp join99
+block else98:
+  v2 = add v2 v5
+  jmp join99
+block join99:
+  v3 = add v3 v1
+  v39 = lt v1 v2
+  br v39 then100 else101
+block then100:
+  v1 = add v1 v4
+  jmp join102
+block else101:
+  v2 = add v2 v5
+  jmp join102
+block join102:
+  v3 = add v3 v1
+  v40 = lt v1 v2
+  br v40 then103 else104
+block then103:
+  v1 = add v1 v4
+  jmp join105
+block else104:
+  v2 = add v2 v5
+  jmp join105
+block join105:
+  v3 = add v3 v1
+  v41 = lt v1 v2
+  br v41 then106 else107
+block then106:
+  v1 = add v1 v4
+  jmp join108
+block else107:
+  v2 = add v2 v5
+  jmp join108
+block join108:
+  v3 = add v3 v1
+  v42 = lt v1 v2
+  br v42 then109 else110
+block then109:
+  v1 = add v1 v4
+  jmp join111
+block else110:
+  v2 = add v2 v5
+  jmp join111
+block join111:
+  v3 = add v3 v1
+  v43 = lt v1 v2
+  br v43 then112 else113
+block then112:
+  v1 = add v1 v4
+  jmp join114
+block else113:
+  v2 = add v2 v5
+  jmp join114
+block join114:
+  v3 = add v3 v1
+  v44 = lt v1 v2
+  br v44 then115 else116
+block then115:
+  v1 = add v1 v4
+  jmp join117
+block else116:
+  v2 = add v2 v5
+  jmp join117
+block join117:
+  v3 = add v3 v1
+  v45 = lt v1 v2
+  br v45 then118 else119
+block then118:
+  v1 = add v1 v4
+  jmp join120
+block else119:
+  v2 = add v2 v5
+  jmp join120
+block join120:
+  v3 = add v3 v1
+  v46 = lt v1 v2
+  br v46 then121 else122
+block then121:
+  v1 = add v1 v4
+  jmp join123
+block else122:
+  v2 = add v2 v5
+  jmp join123
+block join123:
+  v3 = add v3 v1
+  v47 = lt v1 v2
+  br v47 then124 else125
+block then124:
+  v1 = add v1 v4
+  jmp join126
+block else125:
+  v2 = add v2 v5
+  jmp join126
+block join126:
+  v3 = add v3 v1
+  v48 = lt v1 v2
+  br v48 then127 else128
+block then127:
+  v1 = add v1 v4
+  jmp join129
+block else128:
+  v2 = add v2 v5
+  jmp join129
+block join129:
+  v3 = add v3 v1
+  v49 = lt v1 v2
+  br v49 then130 else131
+block then130:
+  v1 = add v1 v4
+  jmp join132
+block else131:
+  v2 = add v2 v5
+  jmp join132
+block join132:
+  v3 = add v3 v1
+  v50 = lt v1 v2
+  br v50 then133 else134
+block then133:
+  v1 = add v1 v4
+  jmp join135
+block else134:
+  v2 = add v2 v5
+  jmp join135
+block join135:
+  v3 = add v3 v1
+  v51 = lt v1 v2
+  br v51 then136 else137
+block then136:
+  v1 = add v1 v4
+  jmp join138
+block else137:
+  v2 = add v2 v5
+  jmp join138
+block join138:
+  v3 = add v3 v1
+  v52 = lt v1 v2
+  br v52 then139 else140
+block then139:
+  v1 = add v1 v4
+  jmp join141
+block else140:
+  v2 = add v2 v5
+  jmp join141
+block join141:
+  v3 = add v3 v1
+  v53 = lt v1 v2
+  br v53 then142 else143
+block then142:
+  v1 = add v1 v4
+  jmp join144
+block else143:
+  v2 = add v2 v5
+  jmp join144
+block join144:
+  v3 = add v3 v1
+  v54 = lt v1 v2
+  br v54 then145 else146
+block then145:
+  v1 = add v1 v4
+  jmp join147
+block else146:
+  v2 = add v2 v5
+  jmp join147
+block join147:
+  v3 = add v3 v1
+  v55 = lt v1 v2
+  br v55 then148 else149
+block then148:
+  v1 = add v1 v4
+  jmp join150
+block else149:
+  v2 = add v2 v5
+  jmp join150
+block join150:
+  v3 = add v3 v1
+  v56 = lt v1 v2
+  br v56 then151 else152
+block then151:
+  v1 = add v1 v4
+  jmp join153
+block else152:
+  v2 = add v2 v5
+  jmp join153
+block join153:
+  v3 = add v3 v1
+  v57 = lt v1 v2
+  br v57 then154 else155
+block then154:
+  v1 = add v1 v4
+  jmp join156
+block else155:
+  v2 = add v2 v5
+  jmp join156
+block join156:
+  v3 = add v3 v1
+  v58 = lt v1 v2
+  br v58 then157 else158
+block then157:
+  v1 = add v1 v4
+  jmp join159
+block else158:
+  v2 = add v2 v5
+  jmp join159
+block join159:
+  v3 = add v3 v1
+  v59 = lt v1 v2
+  br v59 then160 else161
+block then160:
+  v1 = add v1 v4
+  jmp join162
+block else161:
+  v2 = add v2 v5
+  jmp join162
+block join162:
+  v3 = add v3 v1
+  v60 = lt v1 v2
+  br v60 then163 else164
+block then163:
+  v1 = add v1 v4
+  jmp join165
+block else164:
+  v2 = add v2 v5
+  jmp join165
+block join165:
+  v3 = add v3 v1
+  v61 = lt v1 v2
+  br v61 then166 else167
+block then166:
+  v1 = add v1 v4
+  jmp join168
+block else167:
+  v2 = add v2 v5
+  jmp join168
+block join168:
+  v3 = add v3 v1
+  v62 = lt v1 v2
+  br v62 then169 else170
+block then169:
+  v1 = add v1 v4
+  jmp join171
+block else170:
+  v2 = add v2 v5
+  jmp join171
+block join171:
+  v3 = add v3 v1
+  v63 = lt v1 v2
+  br v63 then172 else173
+block then172:
+  v1 = add v1 v4
+  jmp join174
+block else173:
+  v2 = add v2 v5
+  jmp join174
+block join174:
+  v3 = add v3 v1
+  v64 = lt v1 v2
+  br v64 then175 else176
+block then175:
+  v1 = add v1 v4
+  jmp join177
+block else176:
+  v2 = add v2 v5
+  jmp join177
+block join177:
+  v3 = add v3 v1
+  v65 = lt v1 v2
+  br v65 then178 else179
+block then178:
+  v1 = add v1 v4
+  jmp join180
+block else179:
+  v2 = add v2 v5
+  jmp join180
+block join180:
+  v3 = add v3 v1
+  v66 = lt v1 v2
+  br v66 then181 else182
+block then181:
+  v1 = add v1 v4
+  jmp join183
+block else182:
+  v2 = add v2 v5
+  jmp join183
+block join183:
+  v3 = add v3 v1
+  v67 = lt v1 v2
+  br v67 then184 else185
+block then184:
+  v1 = add v1 v4
+  jmp join186
+block else185:
+  v2 = add v2 v5
+  jmp join186
+block join186:
+  v3 = add v3 v1
+  v68 = lt v1 v2
+  br v68 then187 else188
+block then187:
+  v1 = add v1 v4
+  jmp join189
+block else188:
+  v2 = add v2 v5
+  jmp join189
+block join189:
+  v3 = add v3 v1
+  v69 = lt v1 v2
+  br v69 then190 else191
+block then190:
+  v1 = add v1 v4
+  jmp join192
+block else191:
+  v2 = add v2 v5
+  jmp join192
+block join192:
+  v3 = add v3 v1
+  v70 = lt v1 v2
+  br v70 then193 else194
+block then193:
+  v1 = add v1 v4
+  jmp join195
+block else194:
+  v2 = add v2 v5
+  jmp join195
+block join195:
+  v3 = add v3 v1
+  v71 = lt v1 v2
+  br v71 then196 else197
+block then196:
+  v1 = add v1 v4
+  jmp join198
+block else197:
+  v2 = add v2 v5
+  jmp join198
+block join198:
+  v3 = add v3 v1
+  v72 = lt v1 v2
+  br v72 then199 else200
+block then199:
+  v1 = add v1 v4
+  jmp join201
+block else200:
+  v2 = add v2 v5
+  jmp join201
+block join201:
+  v3 = add v3 v1
+  v73 = lt v1 v2
+  br v73 then202 else203
+block then202:
+  v1 = add v1 v4
+  jmp join204
+block else203:
+  v2 = add v2 v5
+  jmp join204
+block join204:
+  v3 = add v3 v1
+  v74 = lt v1 v2
+  br v74 then205 else206
+block then205:
+  v1 = add v1 v4
+  jmp join207
+block else206:
+  v2 = add v2 v5
+  jmp join207
+block join207:
+  v3 = add v3 v1
+  v75 = lt v1 v2
+  br v75 then208 else209
+block then208:
+  v1 = add v1 v4
+  jmp join210
+block else209:
+  v2 = add v2 v5
+  jmp join210
+block join210:
+  v3 = add v3 v1
+  v76 = lt v1 v2
+  br v76 then211 else212
+block then211:
+  v1 = add v1 v4
+  jmp join213
+block else212:
+  v2 = add v2 v5
+  jmp join213
+block join213:
+  v3 = add v3 v1
+  v77 = lt v1 v2
+  br v77 then214 else215
+block then214:
+  v1 = add v1 v4
+  jmp join216
+block else215:
+  v2 = add v2 v5
+  jmp join216
+block join216:
+  v3 = add v3 v1
+  v78 = lt v1 v2
+  br v78 then217 else218
+block then217:
+  v1 = add v1 v4
+  jmp join219
+block else218:
+  v2 = add v2 v5
+  jmp join219
+block join219:
+  v3 = add v3 v1
+  v79 = lt v1 v2
+  br v79 then220 else221
+block then220:
+  v1 = add v1 v4
+  jmp join222
+block else221:
+  v2 = add v2 v5
+  jmp join222
+block join222:
+  v3 = add v3 v1
+  v80 = lt v1 v2
+  br v80 then223 else224
+block then223:
+  v1 = add v1 v4
+  jmp join225
+block else224:
+  v2 = add v2 v5
+  jmp join225
+block join225:
+  v3 = add v3 v1
+  v81 = lt v1 v2
+  br v81 then226 else227
+block then226:
+  v1 = add v1 v4
+  jmp join228
+block else227:
+  v2 = add v2 v5
+  jmp join228
+block join228:
+  v3 = add v3 v1
+  v82 = lt v1 v2
+  br v82 then229 else230
+block then229:
+  v1 = add v1 v4
+  jmp join231
+block else230:
+  v2 = add v2 v5
+  jmp join231
+block join231:
+  v3 = add v3 v1
+  v83 = lt v1 v2
+  br v83 then232 else233
+block then232:
+  v1 = add v1 v4
+  jmp join234
+block else233:
+  v2 = add v2 v5
+  jmp join234
+block join234:
+  v3 = add v3 v1
+  v84 = lt v1 v2
+  br v84 then235 else236
+block then235:
+  v1 = add v1 v4
+  jmp join237
+block else236:
+  v2 = add v2 v5
+  jmp join237
+block join237:
+  v3 = add v3 v1
+  v85 = lt v1 v2
+  br v85 then238 else239
+block then238:
+  v1 = add v1 v4
+  jmp join240
+block else239:
+  v2 = add v2 v5
+  jmp join240
+block join240:
+  v3 = add v3 v1
+  v86 = lt v1 v2
+  br v86 then241 else242
+block then241:
+  v1 = add v1 v4
+  jmp join243
+block else242:
+  v2 = add v2 v5
+  jmp join243
+block join243:
+  v3 = add v3 v1
+  v87 = lt v1 v2
+  br v87 then244 else245
+block then244:
+  v1 = add v1 v4
+  jmp join246
+block else245:
+  v2 = add v2 v5
+  jmp join246
+block join246:
+  v3 = add v3 v1
+  v88 = lt v1 v2
+  br v88 then247 else248
+block then247:
+  v1 = add v1 v4
+  jmp join249
+block else248:
+  v2 = add v2 v5
+  jmp join249
+block join249:
+  v3 = add v3 v1
+  v89 = lt v1 v2
+  br v89 then250 else251
+block then250:
+  v1 = add v1 v4
+  jmp join252
+block else251:
+  v2 = add v2 v5
+  jmp join252
+block join252:
+  v3 = add v3 v1
+  v90 = lt v1 v2
+  br v90 then253 else254
+block then253:
+  v1 = add v1 v4
+  jmp join255
+block else254:
+  v2 = add v2 v5
+  jmp join255
+block join255:
+  v3 = add v3 v1
+  v91 = lt v1 v2
+  br v91 then256 else257
+block then256:
+  v1 = add v1 v4
+  jmp join258
+block else257:
+  v2 = add v2 v5
+  jmp join258
+block join258:
+  v3 = add v3 v1
+  v92 = lt v1 v2
+  br v92 then259 else260
+block then259:
+  v1 = add v1 v4
+  jmp join261
+block else260:
+  v2 = add v2 v5
+  jmp join261
+block join261:
+  v3 = add v3 v1
+  v93 = lt v1 v2
+  br v93 then262 else263
+block then262:
+  v1 = add v1 v4
+  jmp join264
+block else263:
+  v2 = add v2 v5
+  jmp join264
+block join264:
+  v3 = add v3 v1
+  v94 = lt v1 v2
+  br v94 then265 else266
+block then265:
+  v1 = add v1 v4
+  jmp join267
+block else266:
+  v2 = add v2 v5
+  jmp join267
+block join267:
+  v3 = add v3 v1
+  v95 = lt v1 v2
+  br v95 then268 else269
+block then268:
+  v1 = add v1 v4
+  jmp join270
+block else269:
+  v2 = add v2 v5
+  jmp join270
+block join270:
+  v3 = add v3 v1
+  v96 = lt v1 v2
+  br v96 then271 else272
+block then271:
+  v1 = add v1 v4
+  jmp join273
+block else272:
+  v2 = add v2 v5
+  jmp join273
+block join273:
+  v3 = add v3 v1
+  v97 = lt v1 v2
+  br v97 then274 else275
+block then274:
+  v1 = add v1 v4
+  jmp join276
+block else275:
+  v2 = add v2 v5
+  jmp join276
+block join276:
+  v3 = add v3 v1
+  v98 = lt v1 v2
+  br v98 then277 else278
+block then277:
+  v1 = add v1 v4
+  jmp join279
+block else278:
+  v2 = add v2 v5
+  jmp join279
+block join279:
+  v3 = add v3 v1
+  v99 = lt v1 v2
+  br v99 then280 else281
+block then280:
+  v1 = add v1 v4
+  jmp join282
+block else281:
+  v2 = add v2 v5
+  jmp join282
+block join282:
+  v3 = add v3 v1
+  v100 = lt v1 v2
+  br v100 then283 else284
+block then283:
+  v1 = add v1 v4
+  jmp join285
+block else284:
+  v2 = add v2 v5
+  jmp join285
+block join285:
+  v3 = add v3 v1
+  v101 = lt v1 v2
+  br v101 then286 else287
+block then286:
+  v1 = add v1 v4
+  jmp join288
+block else287:
+  v2 = add v2 v5
+  jmp join288
+block join288:
+  v3 = add v3 v1
+  v102 = lt v1 v2
+  br v102 then289 else290
+block then289:
+  v1 = add v1 v4
+  jmp join291
+block else290:
+  v2 = add v2 v5
+  jmp join291
+block join291:
+  v3 = add v3 v1
+  v103 = lt v1 v2
+  br v103 then292 else293
+block then292:
+  v1 = add v1 v4
+  jmp join294
+block else293:
+  v2 = add v2 v5
+  jmp join294
+block join294:
+  v3 = add v3 v1
+  v104 = lt v1 v2
+  br v104 then295 else296
+block then295:
+  v1 = add v1 v4
+  jmp join297
+block else296:
+  v2 = add v2 v5
+  jmp join297
+block join297:
+  v3 = add v3 v1
+  v105 = lt v1 v2
+  br v105 then298 else299
+block then298:
+  v1 = add v1 v4
+  jmp join300
+block else299:
+  v2 = add v2 v5
+  jmp join300
+block join300:
+  v3 = add v3 v1
+  v106 = lt v1 v2
+  br v106 then301 else302
+block then301:
+  v1 = add v1 v4
+  jmp join303
+block else302:
+  v2 = add v2 v5
+  jmp join303
+block join303:
+  v3 = add v3 v1
+  v107 = lt v1 v2
+  br v107 then304 else305
+block then304:
+  v1 = add v1 v4
+  jmp join306
+block else305:
+  v2 = add v2 v5
+  jmp join306
+block join306:
+  v3 = add v3 v1
+  v108 = lt v1 v2
+  br v108 then307 else308
+block then307:
+  v1 = add v1 v4
+  jmp join309
+block else308:
+  v2 = add v2 v5
+  jmp join309
+block join309:
+  v3 = add v3 v1
+  v109 = lt v1 v2
+  br v109 then310 else311
+block then310:
+  v1 = add v1 v4
+  jmp join312
+block else311:
+  v2 = add v2 v5
+  jmp join312
+block join312:
+  v3 = add v3 v1
+  v110 = lt v1 v2
+  br v110 then313 else314
+block then313:
+  v1 = add v1 v4
+  jmp join315
+block else314:
+  v2 = add v2 v5
+  jmp join315
+block join315:
+  v3 = add v3 v1
+  v111 = lt v1 v2
+  br v111 then316 else317
+block then316:
+  v1 = add v1 v4
+  jmp join318
+block else317:
+  v2 = add v2 v5
+  jmp join318
+block join318:
+  v3 = add v3 v1
+  v112 = lt v1 v2
+  br v112 then319 else320
+block then319:
+  v1 = add v1 v4
+  jmp join321
+block else320:
+  v2 = add v2 v5
+  jmp join321
+block join321:
+  v3 = add v3 v1
+  v113 = lt v1 v2
+  br v113 then322 else323
+block then322:
+  v1 = add v1 v4
+  jmp join324
+block else323:
+  v2 = add v2 v5
+  jmp join324
+block join324:
+  v3 = add v3 v1
+  v114 = lt v1 v2
+  br v114 then325 else326
+block then325:
+  v1 = add v1 v4
+  jmp join327
+block else326:
+  v2 = add v2 v5
+  jmp join327
+block join327:
+  v3 = add v3 v1
+  v115 = lt v1 v2
+  br v115 then328 else329
+block then328:
+  v1 = add v1 v4
+  jmp join330
+block else329:
+  v2 = add v2 v5
+  jmp join330
+block join330:
+  v3 = add v3 v1
+  v116 = lt v1 v2
+  br v116 then331 else332
+block then331:
+  v1 = add v1 v4
+  jmp join333
+block else332:
+  v2 = add v2 v5
+  jmp join333
+block join333:
+  v3 = add v3 v1
+  v117 = lt v1 v2
+  br v117 then334 else335
+block then334:
+  v1 = add v1 v4
+  jmp join336
+block else335:
+  v2 = add v2 v5
+  jmp join336
+block join336:
+  v3 = add v3 v1
+  v118 = lt v1 v2
+  br v118 then337 else338
+block then337:
+  v1 = add v1 v4
+  jmp join339
+block else338:
+  v2 = add v2 v5
+  jmp join339
+block join339:
+  v3 = add v3 v1
+  v119 = lt v1 v2
+  br v119 then340 else341
+block then340:
+  v1 = add v1 v4
+  jmp join342
+block else341:
+  v2 = add v2 v5
+  jmp join342
+block join342:
+  v3 = add v3 v1
+  v120 = lt v1 v2
+  br v120 then343 else344
+block then343:
+  v1 = add v1 v4
+  jmp join345
+block else344:
+  v2 = add v2 v5
+  jmp join345
+block join345:
+  v3 = add v3 v1
+  v121 = lt v1 v2
+  br v121 then346 else347
+block then346:
+  v1 = add v1 v4
+  jmp join348
+block else347:
+  v2 = add v2 v5
+  jmp join348
+block join348:
+  v3 = add v3 v1
+  v122 = lt v1 v2
+  br v122 then349 else350
+block then349:
+  v1 = add v1 v4
+  jmp join351
+block else350:
+  v2 = add v2 v5
+  jmp join351
+block join351:
+  v3 = add v3 v1
+  v123 = lt v1 v2
+  br v123 then352 else353
+block then352:
+  v1 = add v1 v4
+  jmp join354
+block else353:
+  v2 = add v2 v5
+  jmp join354
+block join354:
+  v3 = add v3 v1
+  v124 = lt v1 v2
+  br v124 then355 else356
+block then355:
+  v1 = add v1 v4
+  jmp join357
+block else356:
+  v2 = add v2 v5
+  jmp join357
+block join357:
+  v3 = add v3 v1
+  v125 = lt v1 v2
+  br v125 then358 else359
+block then358:
+  v1 = add v1 v4
+  jmp join360
+block else359:
+  v2 = add v2 v5
+  jmp join360
+block join360:
+  v3 = add v3 v1
+  v126 = lt v1 v2
+  br v126 then361 else362
+block then361:
+  v1 = add v1 v4
+  jmp join363
+block else362:
+  v2 = add v2 v5
+  jmp join363
+block join363:
+  v3 = add v3 v1
+  v127 = lt v1 v2
+  br v127 then364 else365
+block then364:
+  v1 = add v1 v4
+  jmp join366
+block else365:
+  v2 = add v2 v5
+  jmp join366
+block join366:
+  v3 = add v3 v1
+  v128 = lt v1 v2
+  br v128 then367 else368
+block then367:
+  v1 = add v1 v4
+  jmp join369
+block else368:
+  v2 = add v2 v5
+  jmp join369
+block join369:
+  v3 = add v3 v1
+  v129 = lt v1 v2
+  br v129 then370 else371
+block then370:
+  v1 = add v1 v4
+  jmp join372
+block else371:
+  v2 = add v2 v5
+  jmp join372
+block join372:
+  v3 = add v3 v1
+  v130 = lt v1 v2
+  br v130 then373 else374
+block then373:
+  v1 = add v1 v4
+  jmp join375
+block else374:
+  v2 = add v2 v5
+  jmp join375
+block join375:
+  v3 = add v3 v1
+  v131 = lt v1 v2
+  br v131 then376 else377
+block then376:
+  v1 = add v1 v4
+  jmp join378
+block else377:
+  v2 = add v2 v5
+  jmp join378
+block join378:
+  v3 = add v3 v1
+  v132 = lt v1 v2
+  br v132 then379 else380
+block then379:
+  v1 = add v1 v4
+  jmp join381
+block else380:
+  v2 = add v2 v5
+  jmp join381
+block join381:
+  v3 = add v3 v1
+  v133 = lt v1 v2
+  br v133 then382 else383
+block then382:
+  v1 = add v1 v4
+  jmp join384
+block else383:
+  v2 = add v2 v5
+  jmp join384
+block join384:
+  v3 = add v3 v1
+  v134 = lt v1 v2
+  br v134 then385 else386
+block then385:
+  v1 = add v1 v4
+  jmp join387
+block else386:
+  v2 = add v2 v5
+  jmp join387
+block join387:
+  v3 = add v3 v1
+  v135 = lt v1 v2
+  br v135 then388 else389
+block then388:
+  v1 = add v1 v4
+  jmp join390
+block else389:
+  v2 = add v2 v5
+  jmp join390
+block join390:
+  v3 = add v3 v1
+  v136 = lt v1 v2
+  br v136 then391 else392
+block then391:
+  v1 = add v1 v4
+  jmp join393
+block else392:
+  v2 = add v2 v5
+  jmp join393
+block join393:
+  v3 = add v3 v1
+  v137 = lt v1 v2
+  br v137 then394 else395
+block then394:
+  v1 = add v1 v4
+  jmp join396
+block else395:
+  v2 = add v2 v5
+  jmp join396
+block join396:
+  v3 = add v3 v1
+  v138 = lt v1 v2
+  br v138 then397 else398
+block then397:
+  v1 = add v1 v4
+  jmp join399
+block else398:
+  v2 = add v2 v5
+  jmp join399
+block join399:
+  v3 = add v3 v1
+  v139 = lt v1 v2
+  br v139 then400 else401
+block then400:
+  v1 = add v1 v4
+  jmp join402
+block else401:
+  v2 = add v2 v5
+  jmp join402
+block join402:
+  v3 = add v3 v1
+  v140 = lt v1 v2
+  br v140 then403 else404
+block then403:
+  v1 = add v1 v4
+  jmp join405
+block else404:
+  v2 = add v2 v5
+  jmp join405
+block join405:
+  v3 = add v3 v1
+  v141 = lt v1 v2
+  br v141 then406 else407
+block then406:
+  v1 = add v1 v4
+  jmp join408
+block else407:
+  v2 = add v2 v5
+  jmp join408
+block join408:
+  v3 = add v3 v1
+  v142 = lt v1 v2
+  br v142 then409 else410
+block then409:
+  v1 = add v1 v4
+  jmp join411
+block else410:
+  v2 = add v2 v5
+  jmp join411
+block join411:
+  v3 = add v3 v1
+  v143 = lt v1 v2
+  br v143 then412 else413
+block then412:
+  v1 = add v1 v4
+  jmp join414
+block else413:
+  v2 = add v2 v5
+  jmp join414
+block join414:
+  v3 = add v3 v1
+  v144 = lt v1 v2
+  br v144 then415 else416
+block then415:
+  v1 = add v1 v4
+  jmp join417
+block else416:
+  v2 = add v2 v5
+  jmp join417
+block join417:
+  v3 = add v3 v1
+  v145 = lt v1 v2
+  br v145 then418 else419
+block then418:
+  v1 = add v1 v4
+  jmp join420
+block else419:
+  v2 = add v2 v5
+  jmp join420
+block join420:
+  v3 = add v3 v1
+  v146 = lt v1 v2
+  br v146 then421 else422
+block then421:
+  v1 = add v1 v4
+  jmp join423
+block else422:
+  v2 = add v2 v5
+  jmp join423
+block join423:
+  v3 = add v3 v1
+  v147 = lt v1 v2
+  br v147 then424 else425
+block then424:
+  v1 = add v1 v4
+  jmp join426
+block else425:
+  v2 = add v2 v5
+  jmp join426
+block join426:
+  v3 = add v3 v1
+  v148 = lt v1 v2
+  br v148 then427 else428
+block then427:
+  v1 = add v1 v4
+  jmp join429
+block else428:
+  v2 = add v2 v5
+  jmp join429
+block join429:
+  v3 = add v3 v1
+  v149 = lt v1 v2
+  br v149 then430 else431
+block then430:
+  v1 = add v1 v4
+  jmp join432
+block else431:
+  v2 = add v2 v5
+  jmp join432
+block join432:
+  v3 = add v3 v1
+  v150 = lt v1 v2
+  br v150 then433 else434
+block then433:
+  v1 = add v1 v4
+  jmp join435
+block else434:
+  v2 = add v2 v5
+  jmp join435
+block join435:
+  v3 = add v3 v1
+  v151 = lt v1 v2
+  br v151 then436 else437
+block then436:
+  v1 = add v1 v4
+  jmp join438
+block else437:
+  v2 = add v2 v5
+  jmp join438
+block join438:
+  v3 = add v3 v1
+  v152 = lt v1 v2
+  br v152 then439 else440
+block then439:
+  v1 = add v1 v4
+  jmp join441
+block else440:
+  v2 = add v2 v5
+  jmp join441
+block join441:
+  v3 = add v3 v1
+  v153 = lt v1 v2
+  br v153 then442 else443
+block then442:
+  v1 = add v1 v4
+  jmp join444
+block else443:
+  v2 = add v2 v5
+  jmp join444
+block join444:
+  v3 = add v3 v1
+  v154 = lt v1 v2
+  br v154 then445 else446
+block then445:
+  v1 = add v1 v4
+  jmp join447
+block else446:
+  v2 = add v2 v5
+  jmp join447
+block join447:
+  v3 = add v3 v1
+  v155 = lt v1 v2
+  br v155 then448 else449
+block then448:
+  v1 = add v1 v4
+  jmp join450
+block else449:
+  v2 = add v2 v5
+  jmp join450
+block join450:
+  v3 = add v3 v1
+  print v3
+  print v2
+  ret

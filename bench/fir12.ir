@@ -1,0 +1,83 @@
+# 12-tap FIR filter: 12 coefficients and a 12-deep window all live across the loop
+# expect: 7166773406970421755
+func fir12
+block entry:
+  v0 = const 1
+  v1 = const 1
+  v2 = const 4
+  v3 = const 7
+  v4 = const 10
+  v5 = const 13
+  v6 = const 16
+  v7 = const 19
+  v8 = const 22
+  v9 = const 25
+  v10 = const 28
+  v11 = const 31
+  v12 = const 34
+  v13 = const 0
+  v14 = const 0
+  v15 = const 0
+  v16 = const 0
+  v17 = const 0
+  v18 = const 0
+  v19 = const 0
+  v20 = const 0
+  v21 = const 0
+  v22 = const 0
+  v23 = const 0
+  v24 = const 0
+  v25 = const 1103515245
+  v26 = const 12345
+  v27 = const 42
+  v28 = const 0
+  v29 = const 60
+  v30 = const 0
+  jmp head1
+block head1:
+  v31 = lt v30 v29
+  br v31 body2 out3
+block body2:
+  v32 = mul v27 v25
+  v27 = add v32 v26
+  v24 = mov v23
+  v23 = mov v22
+  v22 = mov v21
+  v21 = mov v20
+  v20 = mov v19
+  v19 = mov v18
+  v18 = mov v17
+  v17 = mov v16
+  v16 = mov v15
+  v15 = mov v14
+  v14 = mov v13
+  v13 = mov v27
+  v33 = mul v13 v1
+  v34 = mul v14 v2
+  v35 = add v33 v34
+  v36 = mul v15 v3
+  v37 = add v35 v36
+  v38 = mul v16 v4
+  v39 = add v37 v38
+  v40 = mul v17 v5
+  v41 = add v39 v40
+  v42 = mul v18 v6
+  v43 = add v41 v42
+  v44 = mul v19 v7
+  v45 = add v43 v44
+  v46 = mul v20 v8
+  v47 = add v45 v46
+  v48 = mul v21 v9
+  v49 = add v47 v48
+  v50 = mul v22 v10
+  v51 = add v49 v50
+  v52 = mul v23 v11
+  v53 = add v51 v52
+  v54 = mul v24 v12
+  v55 = add v53 v54
+  v28 = add v28 v55
+  v30 = add v30 v0
+  jmp head1
+block out3:
+  print v28
+  ret

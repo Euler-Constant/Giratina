@@ -1,0 +1,62 @@
+# 6 hot variables live from the start to the end, but 8 short-lived cold temporaries appear before the hot loop
+# expect: 320 12400 27
+func hot_long
+block entry:
+  v0 = const 1
+  v1 = const 2
+  v2 = const 3
+  v3 = const 4
+  v4 = const 5
+  v5 = const 6
+  v6 = const 7
+  v7 = const 5
+  v8 = const 15
+  v9 = const 25
+  v10 = const 35
+  v11 = const 45
+  v12 = const 55
+  v13 = const 65
+  v14 = const 75
+  v15 = const 0
+  v15 = add v15 v7
+  v15 = add v15 v8
+  v15 = add v15 v9
+  v15 = add v15 v10
+  v15 = add v15 v11
+  v15 = add v15 v12
+  v15 = add v15 v13
+  v15 = add v15 v14
+  print v15
+  v16 = const 0
+  v17 = const 0
+  v18 = const 100
+  jmp head1
+block head1:
+  v19 = lt v17 v18
+  br v19 body2 out3
+block body2:
+  v20 = mul v1 v2
+  v16 = add v16 v20
+  v21 = mul v2 v3
+  v16 = add v16 v21
+  v22 = mul v3 v4
+  v16 = add v16 v22
+  v23 = mul v4 v5
+  v16 = add v16 v23
+  v24 = mul v5 v6
+  v16 = add v16 v24
+  v25 = mul v6 v1
+  v16 = add v16 v25
+  v17 = add v17 v0
+  jmp head1
+block out3:
+  v26 = const 0
+  v26 = add v26 v1
+  v26 = add v26 v2
+  v26 = add v26 v3
+  v26 = add v26 v4
+  v26 = add v26 v5
+  v26 = add v26 v6
+  print v16
+  print v26
+  ret

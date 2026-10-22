@@ -1,0 +1,96 @@
+# 6x6 matrix multiply through memory, checksum of C; three nested loops
+# expect: 3222
+func matmul
+block entry:
+  v0 = const 1
+  v1 = const 6
+  v2 = const 0
+  v3 = const 1000
+  v4 = const 2000
+  v5 = const 0
+  jmp head1
+block head1:
+  v6 = lt v5 v1
+  br v6 body2 out3
+block body2:
+  v7 = const 0
+  jmp head4
+block head4:
+  v8 = lt v7 v1
+  br v8 body5 out6
+block body5:
+  v9 = mul v5 v1
+  v10 = add v9 v7
+  v11 = add v2 v10
+  v12 = add v5 v7
+  v13 = add v12 v0
+  store v11 v13
+  v14 = add v3 v10
+  v15 = sub v5 v7
+  v16 = const 2
+  v17 = add v15 v16
+  store v14 v17
+  v7 = add v7 v0
+  jmp head4
+block out6:
+  v5 = add v5 v0
+  jmp head1
+block out3:
+  v18 = const 0
+  jmp head7
+block head7:
+  v19 = lt v18 v1
+  br v19 body8 out9
+block body8:
+  v20 = const 0
+  jmp head10
+block head10:
+  v21 = lt v20 v1
+  br v21 body11 out12
+block body11:
+  v22 = const 0
+  v23 = const 0
+  jmp head13
+block head13:
+  v24 = lt v22 v1
+  br v24 body14 out15
+block body14:
+  v25 = mul v18 v1
+  v26 = add v25 v22
+  v27 = add v2 v26
+  v28 = load v27
+  v29 = mul v22 v1
+  v30 = add v29 v20
+  v31 = add v3 v30
+  v32 = load v31
+  v33 = mul v28 v32
+  v23 = add v23 v33
+  v22 = add v22 v0
+  jmp head13
+block out15:
+  v34 = mul v18 v1
+  v35 = add v34 v20
+  v36 = add v4 v35
+  store v36 v23
+  v20 = add v20 v0
+  jmp head10
+block out12:
+  v18 = add v18 v0
+  jmp head7
+block out9:
+  v37 = const 0
+  v38 = const 0
+  v39 = mul v1 v1
+  jmp head16
+block head16:
+  v40 = lt v37 v39
+  br v40 body17 out18
+block body17:
+  v41 = add v4 v37
+  v42 = load v41
+  v38 = add v38 v42
+  v37 = add v37 v0
+  jmp head16
+block out18:
+  print v38
+  ret

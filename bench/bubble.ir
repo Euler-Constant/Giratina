@@ -1,0 +1,74 @@
+# fill 24 words from an LCG, bubble sort them, print first, last and a checksum
+# expect: -8440154482326873199 8816671114685843362 5443843997193131876
+func bubble
+block entry:
+  v0 = const 1
+  v1 = const 24
+  v2 = const 6364136223846793005
+  v3 = const 1442695040888963407
+  v4 = const 12345
+  v5 = const 0
+  v6 = const 0
+  jmp head1
+block head1:
+  v7 = lt v6 v1
+  br v7 body2 out3
+block body2:
+  v8 = mul v4 v2
+  v4 = add v8 v3
+  v9 = add v5 v6
+  store v9 v4
+  v6 = add v6 v0
+  jmp head1
+block out3:
+  v10 = const 0
+  v11 = sub v1 v0
+  jmp head4
+block head4:
+  v12 = lt v10 v1
+  br v12 body5 out6
+block body5:
+  v13 = const 0
+  jmp head7
+block head7:
+  v14 = lt v13 v11
+  br v14 body8 out9
+block body8:
+  v15 = add v5 v13
+  v16 = add v15 v0
+  v17 = load v15
+  v18 = load v16
+  v19 = lt v18 v17
+  br v19 swap10 keep11
+block swap10:
+  store v15 v18
+  store v16 v17
+  jmp keep11
+block keep11:
+  v13 = add v13 v0
+  jmp head7
+block out9:
+  v10 = add v10 v0
+  jmp head4
+block out6:
+  v20 = load v5
+  v21 = add v5 v11
+  v22 = load v21
+  v23 = const 0
+  v24 = const 0
+  jmp head12
+block head12:
+  v25 = lt v24 v1
+  br v25 body13 out14
+block body13:
+  v26 = mul v23 v2
+  v27 = add v5 v24
+  v28 = load v27
+  v23 = add v26 v28
+  v24 = add v24 v0
+  jmp head12
+block out14:
+  print v20
+  print v22
+  print v23
+  ret

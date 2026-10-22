@@ -1,0 +1,53 @@
+# 6-tap FIR filter: 6 coefficients and a 6-deep window all live across the loop
+# expect: 821759810256709777
+func fir6
+block entry:
+  v0 = const 1
+  v1 = const 1
+  v2 = const 4
+  v3 = const 7
+  v4 = const 10
+  v5 = const 13
+  v6 = const 16
+  v7 = const 0
+  v8 = const 0
+  v9 = const 0
+  v10 = const 0
+  v11 = const 0
+  v12 = const 0
+  v13 = const 1103515245
+  v14 = const 12345
+  v15 = const 42
+  v16 = const 0
+  v17 = const 60
+  v18 = const 0
+  jmp head1
+block head1:
+  v19 = lt v18 v17
+  br v19 body2 out3
+block body2:
+  v20 = mul v15 v13
+  v15 = add v20 v14
+  v12 = mov v11
+  v11 = mov v10
+  v10 = mov v9
+  v9 = mov v8
+  v8 = mov v7
+  v7 = mov v15
+  v21 = mul v7 v1
+  v22 = mul v8 v2
+  v23 = add v21 v22
+  v24 = mul v9 v3
+  v25 = add v23 v24
+  v26 = mul v10 v4
+  v27 = add v25 v26
+  v28 = mul v11 v5
+  v29 = add v27 v28
+  v30 = mul v12 v6
+  v31 = add v29 v30
+  v16 = add v16 v31
+  v18 = add v18 v0
+  jmp head1
+block out3:
+  print v16
+  ret

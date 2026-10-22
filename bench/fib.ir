@@ -1,0 +1,22 @@
+# iterative Fibonacci, fib(30); few variables, one hot loop
+# expect: 832040
+func fib
+block entry:
+  v0 = const 1
+  v1 = const 0
+  v2 = const 1
+  v3 = const 0
+  v4 = const 30
+  jmp head1
+block head1:
+  v5 = lt v3 v4
+  br v5 body2 out3
+block body2:
+  v6 = add v1 v2
+  v1 = mov v2
+  v2 = mov v6
+  v3 = add v3 v0
+  jmp head1
+block out3:
+  print v1
+  ret
