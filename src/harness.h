@@ -4,6 +4,7 @@
 
 #include "alloc.h"
 #include "ir.h"
+#include "validate.h"
 #include "vm.h"
 
 namespace ls {
@@ -13,9 +14,11 @@ enum class Numbering { DepthFirst, Layout };
 
 // Turns a function into the input every allocator takes: liveness, then a block order,
 // then one interval per variable. `R` is the number of allocatable registers (it excludes
-// the VM's scratch registers). AllocProblem::interference is NOT filled in yet; graph
-// coloring will need it (build order step 6).
-AllocProblem make_problem(const Function& f, int R, Numbering numbering = Numbering::DepthFirst);
+// the VM's scratch registers). The interference graph graph coloring needs is built too,
+// unless with_interference is false (it does not depend on the numbering, and linear scan
+// never looks at it).
+AllocProblem make_problem(const Function& f, int R, Numbering numbering = Numbering::DepthFirst,
+                          bool with_interference = true);
 
 // Anything that maps a problem to an allocation. allocate_linear_scan and friends fit
 // directly, and so do lambdas, which is how the tests plug in throwaway allocators.
@@ -26,6 +29,11 @@ struct CheckOptions {
   // Run validate_allocation before executing anything. Turn this off only to test that
   // the output comparison catches a bad allocation on its own.
   bool run_validator = true;
+  // What the validator counts as a conflict. Linear scan promises no two overlapping intervals
+  // share a register (Intervals); graph coloring promises the weaker "no two interfering
+  // variables do" (Interference), so it must be validated that way or correct colorings that
+  // share between overlapping intervals would be rejected.
+  SharingRule sharing = SharingRule::Intervals;
 };
 
 struct CheckResult {
@@ -38,8 +46,8 @@ struct CheckResult {
 
 // The differential test for one (program, allocator, R) combination:
 //   1. build the problem and run the allocator
-//   2. static validator: no two overlapping intervals share a register, every variable
-//      has one home, num_spills is consistent
+//   2. static validator: no two conflicting variables (options.sharing) share a register or
+//      slot, every variable has one home, num_spills is consistent
 //   3. run the program with unlimited virtual registers (ground truth)
 //   4. run it again through the allocation on a VM with R registers
 //   5. the two must print exactly the same values

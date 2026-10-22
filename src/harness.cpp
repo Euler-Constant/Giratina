@@ -4,13 +4,14 @@
 #include <vector>
 
 #include "cfg.h"
+#include "interference.h"
 #include "intervals.h"
 #include "liveness.h"
 #include "validate.h"
 
 namespace ls {
 
-AllocProblem make_problem(const Function& f, int R, Numbering numbering) {
+AllocProblem make_problem(const Function& f, int R, Numbering numbering, bool with_interference) {
   const Liveness live = compute_liveness(f);
   const std::vector<int> order =
       numbering == Numbering::DepthFirst ? depth_first_order(f) : layout_order(f);
@@ -19,6 +20,7 @@ AllocProblem make_problem(const Function& f, int R, Numbering numbering) {
   p.num_vars = f.num_vars;
   p.R = R;
   p.intervals = build_intervals(f, live, order);
+  if (with_interference) p.interference = build_interference(f, live);
   return p;
 }
 
@@ -62,7 +64,7 @@ CheckResult check_allocation(const Function& f, int R, const Allocator& allocate
   // 2. Static validator.
   if (options.run_validator) {
     std::string why;
-    if (!validate_allocation(p, a, &why)) return fail("validator: " + why);
+    if (!validate_allocation(p, a, &why, options.sharing)) return fail("validator: " + why);
   }
 
   // 3. Ground truth.
