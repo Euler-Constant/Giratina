@@ -10,6 +10,7 @@
 #include <set>
 #include <stdexcept>
 #include <string>
+#include <tuple>
 #include <vector>
 
 #include "alloc.h"
@@ -292,6 +293,66 @@ int main() {
       check(throws(bad), "linear scan: an interval naming a nonexistent variable is rejected");
     }
 
+    // ---- the interval-weight variant (Sec. 6.3): spill the lowest usage count among the new interval and active ----
+    {
+      auto weighted = [](int R, std::vector<std::tuple<int, int, double>> v) {
+        AllocProblem p;
+        p.num_vars = static_cast<int>(v.size());
+        p.R = R;
+        for (size_t k = 0; k < v.size(); ++k) p.intervals.push_back(iv(static_cast<int>(k), std::get<0>(v[k]), std::get<1>(v[k]), std::get<2>(v[k])));
+        return p;
+      };
+      std::string why2;
+      {  // The two heuristics disagree: the new interval ends last (end-point spills it) but is the most used.
+        AllocProblem p = weighted(1, {{0, 5, 1}, {2, 9, 100}});
+        Allocation e = allocate_linear_scan(p), w = allocate_linear_scan_with(p, LinearSpillChoice::Weight);
+        check(spilled(e, 1) && e.reg[0] == 0 && !spilled(w, 1) && spilled(w, 0) && w.reg[1] == 0 && validate_allocation(p, w, &why2),
+              "linear scan, weight: the cheap active interval is evicted for the heavily used new one (end-point does the opposite): " + describe(w));
+      }
+      {  // The victim is in the MIDDLE of active (not its last element): the new interval takes its register.
+        AllocProblem p = weighted(2, {{0, 10, 5}, {1, 6, 1}, {2, 8, 9}});  // A, B, C; active by end: B, A
+        Allocation w = allocate_linear_scan_with(p, LinearSpillChoice::Weight);
+        Allocation e = allocate_linear_scan(p);
+        check(validate_allocation(p, w, &why2) && spilled(w, 1) && w.reg[2] == 1 && w.reg[0] == 0 && w.num_spills == 1,
+              "linear scan, weight: the lowest-weight interval is evicted even when it is not the last in active: " + describe(w));
+        check(spilled(e, 0), "linear scan, end-point: on the same problem the one ending last (A) is evicted: " + describe(e));
+        // A later interval must still see a correctly ordered active list after the middle removal.
+        AllocProblem q = weighted(2, {{0, 10, 5}, {1, 6, 1}, {2, 8, 9}, {7, 9, 3}});
+        Allocation wq = allocate_linear_scan_with(q, LinearSpillChoice::Weight);
+        check(validate_allocation(q, wq, &why2), "linear scan, weight: still valid after an eviction from the middle of active: " + describe(wq));
+      }
+      {  // Equal weights: the new interval is the one spilled.
+        AllocProblem p = weighted(1, {{0, 5, 7}, {2, 9, 7}});
+        Allocation w = allocate_linear_scan_with(p, LinearSpillChoice::Weight);
+        check(w.reg[0] == 0 && spilled(w, 1), "linear scan, weight: equal weights -> the new interval is spilled: " + describe(w));
+      }
+      {  // R = 0 with the weight rule.
+        AllocProblem p = weighted(0, {{0, 5, 7}, {2, 9, 7}});
+        Allocation w = allocate_linear_scan_with(p, LinearSpillChoice::Weight);
+        check(w.num_spills == 2 && validate_allocation(p, w, &why2), "linear scan, weight: R = 0 spills everything");
+      }
+      // Always valid, never better than the optimum, on random weighted interval sets.
+      std::mt19937 rngw(11);
+      int cases = 0, invalid = 0, below_optimum = 0;
+      for (int it = 0; it < 2000; ++it) {
+        const int n = 1 + static_cast<int>(rngw() % 10);
+        std::vector<std::tuple<int, int, double>> v;
+        for (int k = 0; k < n; ++k) {
+          const int s0 = static_cast<int>(rngw() % 14);
+          v.push_back({s0, s0 + static_cast<int>(rngw() % 8), static_cast<double>(1 + rngw() % 30)});
+        }
+        std::sort(v.begin(), v.end(), [](const auto& a, const auto& b) { return std::get<0>(a) < std::get<0>(b); });
+        for (int R = 0; R <= 4; ++R) {
+          AllocProblem p = weighted(R, v);
+          Allocation a = allocate_linear_scan_with(p, LinearSpillChoice::Weight);
+          ++cases;
+          if (!validate_allocation(p, a, nullptr)) ++invalid;
+          if (a.num_spills < fewest_spills(p.intervals, R)) ++below_optimum;
+        }
+      }
+      check(invalid == 0 && below_optimum == 0, "linear scan, weight: " + std::to_string(cases) + " random weighted sets are always valid and never beat the optimum (" + std::to_string(invalid) + " invalid, " + std::to_string(below_optimum) + " impossible)");
+    }
+
     // The paper (Sec. 4.1) says the furthest-end heuristic spills the fewest live ranges for simple
     // intervals. Check that against an exhaustive search on 3000 random interval sets.
     std::mt19937 rng(5);
@@ -500,6 +561,7 @@ int main() {
   const std::vector<NamedAllocator> allocators = {
       {"usage-count", allocate_usage_count, SharingRule::Intervals},
       {"linear scan", allocate_linear_scan, SharingRule::Intervals},
+      {"linear scan (weight)", [](const AllocProblem& p) { return allocate_linear_scan_with(p, LinearSpillChoice::Weight); }, SharingRule::Intervals},
       {"graph coloring", allocate_graph_coloring, SharingRule::Interference},
       {"graph coloring (weight/degree)",
        [](const AllocProblem& p) { return allocate_graph_coloring_with(p, SpillChoice::LowestWeightPerDegree); },
