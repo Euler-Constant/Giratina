@@ -3,7 +3,7 @@
 A reproduction of Poletto & Sarkar, *Linear Scan Register Allocation*
 (ACM TOPLAS 21(5), Sept. 1999, pp. 895-913).
 
-The goal is to test the paper's claims on a small compiler backend of our own:
+The goal is to test the paper's claims on a small compiler backend of my own:
 a plain (non-SSA) IR, a register VM, and three allocators (usage-count,
 linear scan, simple graph coloring).
 
