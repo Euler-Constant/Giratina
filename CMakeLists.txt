@@ -48,6 +48,15 @@ target_link_libraries(test_harness PRIVATE linscan_core)
 target_compile_definitions(test_harness PRIVATE LINSCAN_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
 add_test(NAME harness COMMAND test_harness)
 
+add_executable(test_allocators tests/test_allocators.cpp)
+target_link_libraries(test_allocators PRIVATE linscan_core)
+target_compile_definitions(test_allocators PRIVATE LINSCAN_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+add_test(NAME allocators COMMAND test_allocators)
+
+add_executable(test_bench tests/test_bench.cpp)
+target_link_libraries(test_bench PRIVATE linscan_core)
+target_compile_definitions(test_bench PRIVATE LINSCAN_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+add_test(NAME bench_programs COMMAND test_bench)
 
 # Define a custom build/profiling target for Callgrind
 find_program(VALGRIND_BIN valgrind)
