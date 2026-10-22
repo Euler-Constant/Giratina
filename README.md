@@ -31,7 +31,7 @@ Benchmarks and timings always come from the optimized `build/` directory
 ## State
 
 Everything in the build order is implemented and tested (steps 1 to 7). `ctest` runs five tests:
-`validator`, `fig2_linear_scan`, `harness`, `allocators` (all three allocators and their variants, through the
+`validator`, `linear_scan`, `harness`, `allocators` (all three allocators and their variants, through the
 differential harness and against hand-built cases, oracles and mutants), and `bench_programs` (every kernel in
 `bench/` against an independently computed expected output).
 
