@@ -13,7 +13,8 @@ namespace {
 // code can be read next to the figure.
 class LinearScan {
  public:
-  LinearScan(const AllocProblem& p) : p_(p), R_(std::max(p.R, 0)), a_(p.num_vars) {
+  LinearScan(const AllocProblem& p, LinearSpillChoice choice)
+      : p_(p), choice_(choice), R_(std::max(p.R, 0)), a_(p.num_vars) {
     // The pool of free registers. It is a stack, so the most recently freed register is
     // reused first, and register 0 is handed out first.
     for (int r = R_ - 1; r >= 0; --r) free_regs_.push_back(r);
@@ -63,18 +64,34 @@ class LinearScan {
   }
 
   // SpillAtInterval(i): all R registers are taken by intervals that overlap i, so one of
-  // those R intervals, or i itself, must live on the stack. Spill whichever ends last.
+  // those R intervals, or i itself, must live on the stack.
+  //   EndPoint (Fig. 1): spill whichever ends last. `active` is sorted by end point, so that is
+  //     its last element, unless i ends at least as late.
+  //   Weight (Sec. 6.3): spill the one with the smallest estimated usage count among i and the
+  //     members of `active`.
+  // On a tie the new interval is the one spilled (Fig. 1's test is a strict >; the weight rule
+  // uses a strict < for the same reason). With R == 0 `active` is empty and nothing can be evicted.
   void spill_at_interval(const Interval& i) {
-    // With R == 0 `active` is empty and there is nothing to take a register from.
-    // On a tie the new interval is the one spilled (the figure's test is a strict >).
-    if (active_.empty() || active_.back()->end <= i.end) {
+    constexpr size_t kNew = static_cast<size_t>(-1);
+    size_t victim_at = kNew;  // position in `active` of the interval to evict, or kNew for i itself
+    if (choice_ == LinearSpillChoice::EndPoint) {
+      if (!active_.empty() && active_.back()->end > i.end) victim_at = active_.size() - 1;
+    } else {
+      double lowest = i.weight;
+      for (size_t k = 0; k < active_.size(); ++k)
+        if (active_[k]->weight < lowest) {
+          lowest = active_[k]->weight;
+          victim_at = k;
+        }
+    }
+    if (victim_at == kNew) {
       spill(i);  // location[i] <- new stack location
       return;
     }
-    const Interval* victim = active_.back();  // the last interval in active
-    a_.reg[i.var] = a_.reg[victim->var];      // register[i] <- register[spill]
-    spill(*victim);                           // location[spill] <- new stack location
-    active_.pop_back();                       // remove spill from active
+    const Interval* victim = active_[victim_at];
+    a_.reg[i.var] = a_.reg[victim->var];  // register[i] <- register[spill]
+    spill(*victim);                       // location[spill] <- new stack location
+    active_.erase(active_.begin() + static_cast<std::ptrdiff_t>(victim_at));  // remove spill from active
     add_to_active(i);
   }
 
@@ -96,6 +113,7 @@ class LinearScan {
   }
 
   const AllocProblem& p_;
+  const LinearSpillChoice choice_;
   const int R_;
   Allocation a_;
   std::vector<int> free_regs_;
@@ -109,6 +127,12 @@ class LinearScan {
 // order of increasing start point, keeping the intervals that overlap the current point and
 // hold a register in `active`, sorted by end point. When all R registers are in use, the
 // interval that ends furthest away is spilled.
-Allocation allocate_linear_scan(const AllocProblem& p) { return LinearScan(p).run(); }
+Allocation allocate_linear_scan_with(const AllocProblem& p, LinearSpillChoice choice) {
+  return LinearScan(p, choice).run();
+}
+
+Allocation allocate_linear_scan(const AllocProblem& p) {
+  return allocate_linear_scan_with(p, LinearSpillChoice::EndPoint);
+}
 
 }  // namespace ls
