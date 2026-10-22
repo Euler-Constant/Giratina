@@ -1,7 +1,5 @@
-// linscan_bench: the measurement driver (DESIGN.md, "Measurement").
+// linscan_bench: the measurement driver.
 //
-//   linscan_bench --experiment NAME --R 8,16 --alloc linear,color --numbering depth
-//                 --trials 10 --min-ms 10 --out results/x.csv  file.ir ...
 //
 // For every program, numbering, register count and allocator it
 //   1. times the compile-time phases separately, over `trials` independent trials,
@@ -36,9 +34,6 @@
 using namespace ls;
 
 namespace {
-
-// ---------------------------------------------------------------------------- timing
-
 volatile size_t g_sink = 0;  // keeps the timed work from being optimised away
 
 using Clock = std::chrono::steady_clock;

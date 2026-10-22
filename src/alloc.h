@@ -20,10 +20,10 @@ struct Allocation {
   explicit Allocation(int n = 0) : reg(n, -1), slot(n, -1) {}
 };
 
-// Baseline: the k most-used variables get registers, the rest go on the stack (paper 5.1.1).
+// Baseline: the k most-used variables get registers, the rest go on the stack.
 Allocation allocate_usage_count(const AllocProblem& p);
 
-// Which interval linear scan spills when all R registers are taken (paper Sec. 4.1 and 6.3).
+// Which interval linear scan spills when all R registers are taken.
 enum class LinearSpillChoice {
   EndPoint,  // the interval that ends last: Fig. 1, "interval length" in Table V
   Weight,    // the interval with the smallest estimated usage count, among the new one and `active`
@@ -34,13 +34,13 @@ Allocation allocate_linear_scan(const AllocProblem& p);
 Allocation allocate_linear_scan_with(const AllocProblem& p, LinearSpillChoice choice);
 
 // How graph coloring picks the variable to set aside when every remaining node has R or more
-// neighbours. The paper says only that reference counts are taken into account (Sec. 5.1.1).
+// neighbours. The paper says only that reference counts are taken into account.
 enum class SpillChoice {
   LowestWeight,           // the variable with the smallest estimated usage count
   LowestWeightPerDegree,  // Chaitin's ratio: usage count divided by the number of neighbours
 };
 
-// Simple graph coloring: no coalescing, spill choice by reference count (paper 5.1.1).
+// Simple graph coloring: no coalescing, spill choice by reference count.
 // Needs AllocProblem::interference (see build_interference); uses the intervals only for their
 // weights. Same as allocate_graph_coloring_with(p, SpillChoice::LowestWeight).
 Allocation allocate_graph_coloring(const AllocProblem& p);
